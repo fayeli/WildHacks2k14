@@ -4,9 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var azure = require('azure');
+var VenmoStrategy = require('passport-venmo').Strategy;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var surveys = require('./routes/surveys');
 
 var app = express();
 
@@ -25,6 +29,45 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/surveys', surveys);
+
+// Configure Passport
+var env = require('node-env-file');
+env(__dirname + "/.env");
+
+var venmoScopes = [
+  "make_payments",
+  "access_friends",
+  "access_email"
+];
+app.get('/auth/venmo', passport.authenticate('venmo', { scope: venmoScopes }));
+
+app.get('/auth/venmo/callback', passport.authenticate('venmo', { failureRedirect: '/' }), function(req, res) {
+  res.redirect('/');
+});
+
+var configurePassportWithVenmo = function(configuration) {
+  passport.use(new VenmoStrategy({
+    clientID: configuration.venmo.clientId,
+    clientSecret: configuration.venmo.clientSecret,
+    callbackURL: configuration.venmo.webRedirectURL
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ VenmoId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }))
+};
+
+var configuration = {
+  venmo: {
+    clientId: process.env.VENMO_CLIENT_ID,
+    clientSecret: process.env.VENMO_CLIENT_SECRET,
+    webRedirectURL: "http://surveymo.azurewebsites.net/auth/venmo/callback"
+  }
+};
+
+configurePassportWithVenmo(configuration);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,5 +100,6 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
-module.exports = app;
+var server = app.listen(process.env.PORT || 3000, function() {
+  console.log('Express server listening on port ' + server.address().port);
+});
