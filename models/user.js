@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var primitives = require('./models/primitives')
+var primitives = require('./primitives')
 
 var User = mongoose.model('User', mongoose.Schema({
   displayName: String,
