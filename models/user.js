@@ -9,18 +9,14 @@ var User = mongoose.model('User', mongoose.Schema({
   refreshToken: String,
   venmoCreds: {},
   ageRange: primitives.AgeRange,
-  gender: primitives.Gender,
-  location: primitives.Location
+  gender: primitives.Gender
+  // location: primitives.Location
 }));
 
 exports = User;
 
 // {
 //   surveySchema: {
-//     id: Integer,
-//     owner: String,
-//     question: String,
-//     choices: [String]
 //   },
 //   responseSchema: {
 //     id: Integer,

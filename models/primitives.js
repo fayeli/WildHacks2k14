@@ -23,6 +23,4 @@ primitives.Gender = {
   ]
 }
 
-primitives.Location
-
 exports = primitives;
