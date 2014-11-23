@@ -14,7 +14,11 @@ var venmoOptions = { scope: venmoScopes, failureRedirect: '/' }
 var passportMiddleware = passport.authenticate('venmo', venmoOptions);
 router.get('/venmo', passportMiddleware);
 router.get('/venmo/callback', passportMiddleware, function(req, res) {
-  res.redirect('/');
+  if (req.user.ageRange) {
+    res.redirect('/');
+  } else {
+    res.redirect('/post-signup');
+  }
 });
 
 module.exports = router;
