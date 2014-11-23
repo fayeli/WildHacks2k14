@@ -32,8 +32,6 @@ app.use('/users', users);
 app.use('/surveys', surveys);
 
 // Configure Passport
-var env = require('node-env-file');
-env(__dirname + "/.env");
 
 var venmoScopes = [
   "make_payments",
@@ -96,10 +94,10 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,
-        error: {}
+        error: err
     });
 });
 
-var server = app.listen(process.env.PORT || 3000, function() {
+var server = app.listen(process.env.port || 3000, function() {
   console.log('Express server listening on port ' + server.address().port);
 });
