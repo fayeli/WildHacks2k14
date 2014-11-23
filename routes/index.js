@@ -6,7 +6,7 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Surveymo' });
 });
 router.get('/bdeeed28213c1646b84ef99fe7c6f94e.txt', function(req, res) {
-  res.sendFile(path.join(__dirname, '../','./bdeeed28213c1646b84ef99fe7c6f94e.txt'));
+  res.sendFile(path.join(__dirname,'./bdeeed28213c1646b84ef99fe7c6f94e.txt'));
 });
 
 module.exports = router;
