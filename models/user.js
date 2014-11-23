@@ -14,14 +14,3 @@ var User = mongoose.model('User', mongoose.Schema({
 }));
 
 module.exports = User;
-
-// {
-//   surveySchema: {
-//   },
-//   responseSchema: {
-//     id: Integer,
-//     surveyId: Integer,
-//     responder: String,
-//     responseIndex: Integer
-//   }
-// }
