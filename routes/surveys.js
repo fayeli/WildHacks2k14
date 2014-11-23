@@ -30,7 +30,7 @@ router.post('/', function(req, res) {
         error: err
       });
     } else {
-      res.render('surveys', { displayName: (req.user || {}).displayName });
+      res.render('surveys', { surveys: Survey.where({}), displayName: (req.user || {}).displayName });
     }
   });
 });
