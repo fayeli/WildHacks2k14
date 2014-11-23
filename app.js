@@ -37,7 +37,8 @@ app.use('/auth', auth);
 
 // Passport config
 
-if (app.get('env') === 'development') {
+var fs = require('fs');
+if (app.get('env') === 'development' && fs.existsSync(__dirname + "/.env")) {
   env = require('node-env-file');
   env(__dirname + '/.env');
 }
