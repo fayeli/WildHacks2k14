@@ -4,3 +4,8 @@ body {
 a {
   color: #00b7ff;
 }
+
+.content {
+    margin:auto;
+    width:600px;
+}
