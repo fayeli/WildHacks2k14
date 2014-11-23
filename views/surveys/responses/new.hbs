@@ -6,8 +6,9 @@
             </div>
 
 
+            {{#with survey}}
         <div class="bubble">
-            <h1>What is your favourite part of Wildhacks2014?</h1>
+          <h1>{{question}}</h1>
         </div>
 
 
@@ -41,6 +42,7 @@
 
             </li>
         </ul>
+        {{/with}}
 
         <div class="answer-button">
             Submit answer

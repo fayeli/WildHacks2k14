@@ -5,7 +5,7 @@ var uuid = require('node-uuid');
 
 /* GET surveys listing. */
 router.get('/', function(req, res) {
-  res.send('respond with a resource');
+  res.render('surveys', { surveys: Survey.all(), displayName: (req.user || {}).displayName });
 });
 
 /* POST create new survey */
@@ -30,7 +30,7 @@ router.post('/', function(req, res) {
         error: err
       });
     } else {
-      res.render('surveys', { displayName: (req.user || {}).displayName });
+      res.render('surveys', { surveys: Survey.all(), displayName: (req.user || {}).displayName });
     }
   });
 });

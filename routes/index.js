@@ -1,6 +1,7 @@
 var express = require('express');
 var requestify = require('requestify');
 var router = express.Router();
+var request = require('request');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -11,15 +12,11 @@ router.get('/bdeeed28213c1646b84ef99fe7c6f94e.txt', function(req, res) {
 });
 
 router.get('/herpderp', function(req, res) {
-	requestify.post('https://api.venmo.com/v1/payments', {
-		access_token: (req.user || {}).accessToken,
-		user_id: 'isaacsanders',
+	request.post({url:'https://api.venmo.com/v1/payments', form: {
+		access_token: 'NyKFjDq4gyarqAFBt8gyDncmxpcMLNyP',
+		user_id: '1533337634078720143',
 		note: 'Hey bae',
-		amount: 0.01
-		})
-	.then(function(response) {
-		// Get the response body
-		response.getBody();
-	});
+		amount: 1
+		}}, function(err, rs, b){res.send(rs)});
 });
 module.exports = router;
