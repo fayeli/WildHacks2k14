@@ -42,11 +42,13 @@
   top: 144px;
 }
 .answer-button:hover,
-.next-button:hover {
+.next-button:hover,
+.confirm-button {
   background-color: #337cab;
 }
 .answer-button,
-.next-button {
+.next-button,
+.confirm-button {
   border: #3d95ce 1px solid;
   border-radius: 3px;
   padding: 10px;
