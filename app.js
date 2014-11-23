@@ -84,6 +84,14 @@ var configurePassportWithVenmo = function(configuration) {
   }))
 };
 
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+
 var configuration = {
   venmo: {
     clientID: process.env.VENMO_CLIENT_ID,
