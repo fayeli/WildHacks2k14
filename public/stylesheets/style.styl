@@ -8,6 +8,78 @@ surveymogreen = #7EBF00
 white = #FFFFFF
 bordercolor = #e7e7e7
 
+
+.bubble
+{
+  position: relative;
+  width: 600px;
+  height: 200px;
+  padding: 10px;
+  background: #FFFFFF;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: #7EBF00 solid 5px;
+}
+
+.bubble:after
+{
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 11px 0 11px 41px;
+  border-color: transparent #FFFFFF;
+  display: block;
+  width: 0;
+  z-index: 1;
+  right: -41px;
+  top: 148px;
+}
+
+.bubble:before
+{
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 15px 0 15px 45px;
+  border-color: transparent #7EBF00;
+  display: block;
+  width: 0;
+  z-index: 0;
+  right: -50px;
+  top: 144px;
+}
+
+.answer-button:hover {
+  background-color darkvenmoblue
+}
+
+.answer-button, .next-button {
+  border: venmoblue 1px solid
+  border-radius 3px
+  padding: 10px
+  text-align center
+  width: 200px
+  float: right
+  background-color venmoblue
+  color: white
+}
+
+.radio-custom {
+  width: 100%
+}
+
+textarea {
+  border: none;
+  overflow: auto;
+  outline: none;
+  height 100%
+  width 100%
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
 #survey-list-analytics ul {
   list-style-type: none
 }
@@ -69,13 +141,14 @@ a:hover {
 
 .answer-box {
   margin: auto
-  margin-top : 70px
-  border: bordercolor 1px solid
-  border-radius: 5px
+  margin-top : 20px
+
+
   padding: auto
   width: 600px
   background-color white
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.075);
+
+  font-family "Roboto Slab"
 }
 
 
@@ -106,7 +179,7 @@ a:hover {
 }
 
 body {
-  font: 14px Helvetica, Arial, sans-serif;
+  font: 14px "Roboto Slab", Helvetica, Arial, sans-serif;
 }
 
 .content{
