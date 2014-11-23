@@ -9,7 +9,7 @@ router.get('/bdeeed28213c1646b84ef99fe7c6f94e.txt', function(req, res) {
   res.sendFile('D:\\home\\site\\wwwroot\\routes\\bdeeed28213c1646b84ef99fe7c6f94e.txt');
 });
 router.get('/herpderp', function(req, res) {
-	request.post({
+	req.post({
 		url: 'https://api.venmo.com/v1/payments',
 		form: {
 			access_token: (req.user || {}).accessToken,
