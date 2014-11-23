@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Survey = require('../models/survey');
+var uuid = require('node-uuid');
 
 /* GET surveys listing. */
 router.get('/', function(req, res) {
