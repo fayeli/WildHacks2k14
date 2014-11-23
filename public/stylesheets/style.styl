@@ -1,4 +1,5 @@
 venmoblue = #3D95CE
+darkvenmoblue = #337CAB
 lightgrey = #E7EBEE
 coolgrey = #DEE2E5
 grey = #6E787F
@@ -7,13 +8,40 @@ surveymogreen = #7EBF00
 white = #FFFFFF
 bordercolor = #e7e7e7
 
+#survey-list-analytics ul {
+  list-style-type: none
+}
+
+#survey-list-analytics ul a:hover {
+  background-color coolgrey
+}
+
+#survey-list-analytics ul a {
+  display: block;
+  text-decoration: none;
+  background: lightgrey;
+  border-bottom: 5px solid white;
+  border-radius 3px
+  padding: 10px;
+}
+
+#survey-list-analytics {
+  color: darkgrey
+}
 
 a:hover {
   text-decoration: none;
+  color: inherit
 }
+
+
 
 .venmo-pic {
   height: 10px
+}
+
+.sign-in-button:hover {
+  background-color darkvenmoblue
 }
 
 .sign-in-button {
@@ -31,13 +59,25 @@ a:hover {
   margin-top : 90px
   border: bordercolor 1px solid
   border-radius: 5px
-  padding: 10px
+  padding: auto
   text-align center
   width: 500px
   height: 250px
   background-color white
   box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.075);
 }
+
+.answer-box {
+  margin: auto
+  margin-top : 70px
+  border: bordercolor 1px solid
+  border-radius: 5px
+  padding: auto
+  width: 600px
+  background-color white
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.075);
+}
+
 
 
 .navbar-brand {
@@ -74,6 +114,6 @@ body {
   width: 600px;
 }
 
-a {
-  color: #00B7FF;
+a, a:hover {
+  color: darkgrey
 }
