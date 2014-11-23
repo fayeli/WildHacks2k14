@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var VenmoStrategy = require('passport-venmo').Strategy;
-var User = require('../models/user');
+var User = require('./models/user');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
