@@ -61,7 +61,13 @@ var configurePassportWithVenmo = function(configuration) {
           refreshToken: refreshToken
         });
         user.save(function(err) {
-          if (err) console.log(err);
+          if (err) {
+            res.status(err.status || 500);
+            res.render('error', {
+              message: err.message,
+              error: err
+            });
+          }
           return done(err, user);
         });
       } else {
