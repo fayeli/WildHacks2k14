@@ -84,7 +84,7 @@ var configuration = {
   venmo: {
     clientID: process.env.VENMO_CLIENT_ID,
     clientSecret: process.env.VENMO_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/venmo/callback"
+    callbackURL: "http://surveymo.heroku.com/auth/venmo/callback"
   }
 };
 
