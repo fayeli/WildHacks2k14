@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var passport = require('passport');
-var azure = require('azure');
-var User = require('../models/user');
 
 var venmoScopes = [
   "make_payments",
