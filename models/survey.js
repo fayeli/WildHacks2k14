@@ -1,11 +1,10 @@
 var mongoose = require('mongoose');
 
 var Survey = mongoose.model('Survey', mongoose.Schema({
-  id: Integer,
+  id: String,
   owner: String,
   question: String,
-  choices: [String],
-  balance: Integer
+  choices: [String]
 }));
 
 module.exports = Survey;

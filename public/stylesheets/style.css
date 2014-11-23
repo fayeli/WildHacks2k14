@@ -58,11 +58,17 @@
   background-color: #3d95ce;
   color: #fff;
 }
+.next-button input {
+  border: none;
+  background: none;
+  color: none;
+}
 .radio-answer {
   width: 100%;
 }
 textarea {
   border: none;
+  resize: none;
   overflow: auto;
   outline: none;
   height: 100%;

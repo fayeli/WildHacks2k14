@@ -21,7 +21,8 @@
     "node-env-file": "0.1.4",
     "twitter-bootstrap": "2.1.1",
     "express-session": "*",
-    "requestify": "0.1.16"
+    "requestify": "0.1.16",
+    "node-uuid": "*"
   },
   "engines": {
     "node": "0.10.x"
