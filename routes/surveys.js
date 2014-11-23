@@ -40,4 +40,8 @@ router.get('/new', function(req, res) {
   res.render('surveys/new', { title: 'New Survey', displayName: (req.user || {}).displayName });
 });
 
+router.get('/settings', function(req, res) {
+  res.render('surveys/settings', { title: 'Survey Settings', displayName: (req.user || {}).displayName });
+});
+
 module.exports = router;

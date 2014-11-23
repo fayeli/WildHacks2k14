@@ -1,0 +1,34 @@
+<form action="/post-signup" method="post">
+  <div class="panel">
+    <div class="panel-heading">
+      We need moar detailz
+    </div>
+
+    <h3>Age Range</h3>
+    <ul class="">
+      {{#each ageRanges}}
+        <li role="asdf">
+          <a role="menuitem" tabindex="-1" href="#">
+          <input class="sr-only" name="agerange" value={{this}}>
+            {{this}}
+          </a>
+        </li>
+      {{/each}}
+    </ul> 
+    <h3>Gender</h3>
+    <ul class="">
+      {{#each genders}}
+        <li role="asdf">
+          <a role="menuitem" tabindex="-1" href="#">
+          <input class="sr-only" name="gender" value={{this}}>
+            {{this}}
+          </a>
+        </li>
+      {{/each}}
+    </ul> 
+    <div class="next-button">
+      <input type="submit" value="Next">
+    </div>
+  </div>
+</form>
+

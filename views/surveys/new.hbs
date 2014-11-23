@@ -7,23 +7,35 @@
       <h1>
         <form>
           <div class="form-group">
-            <textarea autofocus id="question-input" rows="3" name="question" placeholder="Type in the question here"></textarea>
+            <textarea autofocus id="question-input" rows="2" placeholder="Type in the question here"></textarea>
           </div>
         </form>
       </h1>
     </div>
     <ul class="list-group">
-      <li class="list-group-item" data-initialize="radio">
-        <textarea class="" rows="1" name="firstChoice" placeholder="Provide the first mulitiple choice answer"></textarea>
+      <li class="list-group-item radio" data-initialize="radio">
+      <label class="radio-custom">
+        <input class="sr-only" name="radioEx1" type="radio" value="option1">
+        <textarea class="" rows="1" placeholder="Provide the first mulitiple choice answer"></textarea>
+      </label>
       </li>
-      <li class="list-group-item" data-initialize="radio">
-        <textarea class="" rows="1" name="secondChoice" placeholder="...and the second"></textarea>
+      <li class="list-group-item radio" data-initialize="radio">
+      <label class="radio-custom">
+        <input class="sr-only" name="radioEx1" type="radio" value="option2">
+        <textarea class="" rows="1" placeholder="and the second"></textarea>
+      </label>
       </li>
-      <li class="list-group-item" data-initialize="radio">
-        <textarea class="" rows="1" name="thirdChoice" placeholder="...the third"></textarea>
+      <li class="list-group-item radio" data-initialize="radio">
+      <label class="radio-custom">
+        <input class="sr-only" name="radioEx1" type="radio" value="option3">
+        <textarea class="" rows="1" placeholder="the thrid"></textarea>
+      </label>
       </li>
-      <li class="list-group-item" data-initialize="radio">
-        <textarea class="" rows="1" name="fourthChoice" placeholder="...and the fourth"></textarea>
+      <li class="list-group-item radio" data-initialize="radio">
+      <label class="radio-custom">
+        <input class="sr-only" name="radioEx1" type="radio" value="option4">
+        <textarea class="" rows="1" placeholder="...and the last"></textarea>
+      </label>
       </li>
     </ul>
     <div class="next-button">
