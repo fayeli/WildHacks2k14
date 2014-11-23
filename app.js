@@ -13,6 +13,8 @@ var users = require('./routes/users');
 var surveys = require('./routes/surveys');
 var auth = require('./routes/auth');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://mangomango.cloudapp.net/surveymo');
 var app = express();
 
 // view engine setup
