@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 
 /* GET new surveys form. */
 router.get('/new', function(req, res) {
-  res.render('surveys/new', { title: 'New Survey' });
+  res.render('surveys/new', { title: 'New Survey', displayName: (req.user || {}).displayName });
 });
 
 module.exports = router;
