@@ -36,11 +36,12 @@ app.use('/surveys', surveys);
 var venmoScopes = [
   "make_payments",
   "access_friends",
+  "access_profile",
   "access_email"
 ];
 app.get('/auth/venmo', passport.authenticate('venmo', { scope: venmoScopes }));
 
-app.get('/auth/venmo/callback', passport.authenticate('venmo', { failureRedirect: '/' }), function(req, res) {
+app.get('/auth/venmo/callback', passport.authenticate('venmo', { scope: venmoScopes, failureRedirect: '/' }), function(req, res) {
   res.redirect('/');
 });
 
