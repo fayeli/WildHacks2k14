@@ -103,6 +103,19 @@ var configuration = {
   }
 };
 
+app.get('/herpderp', function(req, res) {
+	var data = {access_token: (req.user || {}).accessToken,
+		user_id: 'isaacsanders',
+	note: 'Hey bae',
+	amount: 0.01};
+	var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+	var request = new XMLHttpRequest();
+	request.open('POST', 'https://api.venmo.com/v1/payments', true);
+	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	request.send(data);
+});
+
+
 configurePassportWithVenmo(configuration);
 
 // catch 404 and forward to error handler
