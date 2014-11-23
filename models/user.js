@@ -13,7 +13,7 @@ var User = mongoose.model('User', mongoose.Schema({
   // location: primitives.Location
 }));
 
-exports = User;
+module.exports = User;
 
 // {
 //   surveySchema: {

@@ -46,12 +46,13 @@ app.get('/auth/venmo/callback', passport.authenticate('venmo', { scope: venmoSco
   res.redirect('/');
 });
 
+if (app.get('env') === 'development') {
+  env = require('node-env-file');
+  env(__dirname + '/.env');
+}
+
 var configurePassportWithVenmo = function(configuration) {
-  passport.use(new VenmoStrategy({
-    clientID: configuration.venmo.clientId,
-    clientSecret: configuration.venmo.clientSecret,
-    callbackURL: configuration.venmo.webRedirectURL
-  },
+  passport.use(new VenmoStrategy(configuration.venmo,
   function(accessToken, refreshToken, profile, done) {
     User.findOne({
       username: profile.username,
@@ -83,9 +84,9 @@ var configurePassportWithVenmo = function(configuration) {
 
 var configuration = {
   venmo: {
-    clientId: process.env.VENMO_CLIENT_ID,
+    clientID: process.env.VENMO_CLIENT_ID,
     clientSecret: process.env.VENMO_CLIENT_SECRET,
-    webRedirectURL: "http://surveymo.azurewebsites.net/auth/venmo/callback"
+    callbackURL: "http://surveymo.azurewebsites.net/auth/venmo/callback"
   }
 };
 

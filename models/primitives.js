@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var primitives = {};
 
 primitives.AgeRange = {
+  type: String,
   enum: [
     "13 - 18",
     "19 - 22",
@@ -16,6 +17,7 @@ primitives.AgeRange = {
 };
 
 primitives.Gender = {
+  type: String,
   enum: [
     "Female",
     "Male",
@@ -23,4 +25,4 @@ primitives.Gender = {
   ]
 }
 
-exports = primitives;
+module.exports = primitives;
