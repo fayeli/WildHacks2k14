@@ -1,0 +1,52 @@
+
+    <div class="answer-box">
+
+            <div class="panel-heading">
+                Answer this question to earn free money.
+            </div>
+
+
+            {{#with survey}}
+        <div class="bubble">
+          <h1>{{question}}</h1>
+        </div>
+
+
+        <ul class="list-group">
+            <li class="list-group-item radio" data-initialize="radio">
+                <label class="radio-custom radio-answer">
+                    <input class="sr-only" name="radioEx1" type="radio" value="option1">
+                    Cup Stackathon
+                </label>
+
+            </li>
+            <li class="list-group-item radio" data-initialize="radio">
+                <label class="radio-custom radio-answer">
+                    <input class="sr-only" name="radioEx1" type="radio" value="option2">
+                    Photobooth
+                </label>
+
+            </li>
+            <li class="list-group-item radio" data-initialize="radio">
+                <label class="radio-custom radio-answer">
+                    <input class="sr-only" name="radioEx1" type="radio" value="option3">
+                    Red Bull Delivery
+                </label>
+
+            </li>
+            <li class="list-group-item radio" data-initialize="radio">
+                <label class="radio-custom radio-answer">
+                    <input class="sr-only" name="radioEx1" type="radio" value="option4">
+                    Sleeplessness
+                </label>
+
+            </li>
+        </ul>
+        {{/with}}
+
+        <div class="answer-button">
+            Submit answer
+        </div>
+
+    </div>
+
