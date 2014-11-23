@@ -5,14 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
-var azure = require('azure');
 var VenmoStrategy = require('passport-venmo').Strategy;
 var User = require('./models/user');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var surveys = require('./routes/surveys');
+var auth = require('./routes/auth');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://mangomango.cloudapp.net/surveymo');
 var app = express();
 
 // view engine setup
@@ -31,20 +33,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/surveys', surveys);
+app.use('/auth', auth);
 
-// Configure Passport
-
-var venmoScopes = [
-  "make_payments",
-  "access_friends",
-  "access_profile",
-  "access_email"
-];
-app.get('/auth/venmo', passport.authenticate('venmo', { scope: venmoScopes }));
-
-app.get('/auth/venmo/callback', passport.authenticate('venmo', { scope: venmoScopes, failureRedirect: '/' }), function(req, res) {
-  res.redirect('/');
-});
+// Passport config
 
 if (app.get('env') === 'development') {
   env = require('node-env-file');
@@ -70,7 +61,13 @@ var configurePassportWithVenmo = function(configuration) {
           refreshToken: refreshToken
         });
         user.save(function(err) {
-          if (err) console.log(err);
+          if (err) {
+            res.status(err.status || 500);
+            res.render('error', {
+              message: err.message,
+              error: err
+            });
+          }
           return done(err, user);
         });
       } else {
