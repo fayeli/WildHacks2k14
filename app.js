@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var azure = require('azure');
 var VenmoStrategy = require('passport-venmo').Strategy;
+var User = require('./models/user');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -52,8 +53,30 @@ var configurePassportWithVenmo = function(configuration) {
     callbackURL: configuration.venmo.webRedirectURL
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ VenmoId: profile.id }, function (err, user) {
-      return done(err, user);
+    User.findOne({
+      username: profile.username,
+    }, function (err, user) {
+      if (err) {
+        return done(err);
+      }
+
+      if (!user) {
+        user = new User({
+          displayName: profile.displayName,
+          username: profile.username,
+          email: profile.email,
+          accessToken: accessToken,
+          refreshToken: refreshToken
+        });
+        user.save(function(err) {
+          if (err) console.log(err);
+          return done(err, user);
+        });
+      } else {
+        user.accessToken = accessToken;
+        user.save();
+        return done(err, user);
+      }
     });
   }))
 };
