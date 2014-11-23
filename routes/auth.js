@@ -21,4 +21,27 @@ router.get('/venmo/callback', passportMiddleware, function(req, res) {
   }
 });
 
+router.get('/post-signup', function(req, res) {
+  res.render('post_signup', {
+    ageRanges: User.schema.path('ageRange').enumValues,
+    genders: User.schema.path('gender').enumValues
+  });
+});
+
+router.post('/post-signup', function(req, res) {
+  var user = req.user;
+  user.ageRange = req.body.ageRange;
+  user.gender = req.body.gender;
+  user.save(function(err) {
+    if (err) {
+      res.render('error', {
+        message: err.message,
+        error: err
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
+});
+
 module.exports = router;
