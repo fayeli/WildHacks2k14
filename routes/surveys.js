@@ -5,7 +5,7 @@ var uuid = require('node-uuid');
 
 /* GET surveys listing. */
 router.get('/', function(req, res) {
-  res.send('respond with a resource');
+  res.render('surveys', { surveys: Survey.where({}), displayName: (req.user || {}).displayName });
 });
 
 /* POST create new survey */
