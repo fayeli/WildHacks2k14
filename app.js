@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var session = require('express-session');
 var VenmoStrategy = require('passport-venmo').Strategy;
 var User = require('./models/user');
 
@@ -14,7 +15,7 @@ var surveys = require('./routes/surveys');
 var auth = require('./routes/auth');
 
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://mangomango.cloudapp.net/surveymo');
+var db = mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/surveymo');
 var app = express();
 
 // view engine setup
@@ -29,6 +30,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/users', users);
@@ -37,7 +41,8 @@ app.use('/auth', auth);
 
 // Passport config
 
-if (app.get('env') === 'development') {
+var fs = require('fs');
+if (app.get('env') === 'development' && fs.existsSync(__dirname + "/.env")) {
   env = require('node-env-file');
   env(__dirname + '/.env');
 }
@@ -79,11 +84,22 @@ var configurePassportWithVenmo = function(configuration) {
   }))
 };
 
+passport.serializeUser(function(user, done) {
+    done(null, user.username);
+});
+
+passport.deserializeUser(function(username, done) {
+  User.findOne({ username: username }, function (err, user) {
+    done(err, user);
+  });
+});
+
+
 var configuration = {
   venmo: {
     clientID: process.env.VENMO_CLIENT_ID,
     clientSecret: process.env.VENMO_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/venmo/callback"
+    callbackURL: "http://surveymo.heroku.com/auth/venmo/callback"
   }
 };
 
@@ -130,6 +146,6 @@ db.connection.on('close', function(str) {
       console.log("DB disconnected: "+str);
 });
 
-var server = app.listen(process.env.port || 3000, function() {
+var server = app.listen(process.env.PORT || 3000, function() {
   console.log('Express server listening on port ' + server.address().port);
 });
