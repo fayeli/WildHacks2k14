@@ -64,4 +64,23 @@ router.get('/settings', function(req, res) {
   res.render('surveys/settings', { title: 'Survey Settings', displayName: (req.user || {}).displayName });
 });
 
+router.param('surveyId', function(req, res, next, id) {
+  Survey.findOne({ id: id }, function(err, survey) {
+    req.survey = survey;
+    next();
+  });
+});
+
+router.get('/:surveyId/responses/new', function(req, res) {
+  if (err) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  } else {
+    res.render('surveys/response', { survey: req.survey, displayName: (req.user || {}).displayName });
+  }
+});
+
 module.exports = router;
