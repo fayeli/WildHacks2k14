@@ -58,7 +58,9 @@ var configurePassportWithVenmo = function(configuration) {
       }
 
       if (!user) {
+        console.log(profile);
         user = new User({
+          id: profile.id,
           displayName: profile.displayName,
           username: profile.username,
           email: profile.email,

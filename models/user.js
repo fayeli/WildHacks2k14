@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var primitives = require('./primitives')
 
 var User = mongoose.model('User', mongoose.Schema({
+  id: String,
   displayName: String,
   username: String,
   email: String,
