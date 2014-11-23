@@ -5,13 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
-var azure = require('azure');
 var VenmoStrategy = require('passport-venmo').Strategy;
-var User = require('./models/user');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var surveys = require('./routes/surveys');
+var auth = require('./routes/auth');
 
 var app = express();
 
@@ -31,20 +30,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/surveys', surveys);
+app.use('/auth', auth);
 
-// Configure Passport
-
-var venmoScopes = [
-  "make_payments",
-  "access_friends",
-  "access_profile",
-  "access_email"
-];
-app.get('/auth/venmo', passport.authenticate('venmo', { scope: venmoScopes }));
-
-app.get('/auth/venmo/callback', passport.authenticate('venmo', { scope: venmoScopes, failureRedirect: '/' }), function(req, res) {
-  res.redirect('/');
-});
+// Passport config
 
 if (app.get('env') === 'development') {
   env = require('node-env-file');
