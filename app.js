@@ -14,7 +14,7 @@ var surveys = require('./routes/surveys');
 var auth = require('./routes/auth');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://mangomango.cloudapp.net:27017/surveymo');
+var db = mongoose.connect('mongodb://mangomango.cloudapp.net/surveymo');
 var app = express();
 
 // view engine setup
@@ -83,7 +83,7 @@ var configuration = {
   venmo: {
     clientID: process.env.VENMO_CLIENT_ID,
     clientSecret: process.env.VENMO_CLIENT_SECRET,
-    callbackURL: "http://surveymo.azurewebsites.net/auth/venmo/callback"
+    callbackURL: "http://localhost:3000/auth/venmo/callback"
   }
 };
 
@@ -118,6 +118,16 @@ app.use(function(err, req, res, next) {
         message: err.message,
         error: err
     });
+});
+
+db.connection.on('error', function(err) {
+      console.log("DB connection Error: "+err);
+});
+db.connection.on('open', function() {
+      console.log("DB connected");
+});
+db.connection.on('close', function(str) {
+      console.log("DB disconnected: "+str);
 });
 
 var server = app.listen(process.env.port || 3000, function() {
