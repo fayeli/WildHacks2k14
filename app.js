@@ -131,6 +131,6 @@ db.connection.on('close', function(str) {
       console.log("DB disconnected: "+str);
 });
 
-var server = app.listen(process.env.port || 3000, function() {
+var server = app.listen(process.env.PORT || 3000, function() {
   console.log('Express server listening on port ' + server.address().port);
 });
